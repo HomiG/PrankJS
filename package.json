@@ -10,7 +10,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
-    "dev": "live-server --watch=src --entry-file=src/index.html"
+    "dev": "concurrently \"rollup -c -w\" \"live-server --watch=dist --entry-file=src/index.html\""
   },
   "author": "HomiG",
   "license": "ISC",
@@ -27,6 +27,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.5.12",
+    "concurrently": "^8.2.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "live-server": "^1.2.2",
