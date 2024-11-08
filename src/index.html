@@ -1,23 +1,97 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- <script src="file://C:/Users/homi/Desktop/PrankJS/dist/prankjs.umd.js"></script> -->
-    <script src="dist/prankjs.umd.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    sdfsdfsdf sdf
-    <a href="https://google.gr"> test </a>
-    <script>
-      PrankJS.Pranks.randomFloatingObjects(
-        "https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png",
-      );
-      // PrankJS.fakeError('https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png');
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrankJS Demo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
 
-      PrankJS.Pranks.invertColors(5000, 1000, 5);
-    </script>
-  </body>
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #4CAF50;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .prank-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .prank-buttons button {
+      padding: 1rem 2rem;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      font-size: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .prank-buttons button:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+
+    .prank-buttons button:active {
+      transform: translateY(0);
+    }
+  </style>
+  <script src="dist/prankjs.umd.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>PrankJS Demo</h1>
+  </header>
+  <main>
+    <h2>Choose a Prank</h2>
+    <div class="prank-buttons">
+      <button
+        onclick="PrankJS.Pranks.randomFloatingObjects('https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png')">
+        <i class="fas fa-random"></i> Random Floating Objects
+      </button>
+      <button onclick="PrankJS.Pranks.gravitySwitch(5000, 1000, 5)">
+        <i class="fas fa-arrows-alt-v"></i> Gravity Switch
+      </button>
+      <button onclick="PrankJS.Pranks.invertColors(5000, 1000, 5)">
+        <i class="fas fa-adjust"></i> Invert Colors
+      </button>
+      <button onclick="PrankJS.Pranks.fakeError('This is a fake error message!')">
+        <i class="fas fa-exclamation-triangle"></i> Fake Error
+      </button>
+      <button onclick="PrankJS.Pranks.flipScreen(3000)">
+        <i class="fas fa-sync-alt"></i> Flip Screen
+      </button>
+    </div>
+  </main>
+</body>
+
 </html>
