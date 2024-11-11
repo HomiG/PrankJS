@@ -1,8 +1,9 @@
 const mirrorEffect = (): void => {
-    // TODO: Implement ...  
-    throw new Error('Not implemented yet');  
-};  
-  
-// Implementation of the mirrorEffect prank  
-  
-export default mirrorEffect; 
+    const body = document.body;
+    body.style.transform = 'scaleX(-1)';
+    body.style.transition = 'transform 0.5s ease-in-out';
+};
+
+// Implementation of the mirrorEffect prank
+
+export default mirrorEffect;
