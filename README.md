@@ -32,4 +32,16 @@ This project is currently in a phase that's even more unstable than an alpha ver
 We welcome contributions, but please be aware that the codebase is likely to change significantly. If you’re interested in contributing, please reach out to discuss the roadmap and where you can best help.
 
 
-**Not recommended for production use!**
+## Usage
+
+Can be imported in any browser application
+
+``` Typescript
+import randomBlur from './src/pranks/randomBlur';
+
+import { Pranks } from 'prankjs'
+
+randomBlur()
+Pranks.shakeElement('elementId')
+Pranks.flipScreen()
+```
