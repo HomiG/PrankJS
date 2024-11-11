@@ -1,6 +1,6 @@
 {
   "name": "prankjs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Used For Pranking on ANY SPA",
   "main": "dist/prankjs.cjs.js",
   "module": "dist/prankjs.esm.js",
