@@ -1,12 +1,17 @@
 {
   "name": "prankjs",
-  "version": "1.0.0",
+  "version": "0.0.3-0",
   "description": "Used For Pranking on ANY SPA",
   "main": "dist/prankjs.cjs.js",
   "module": "dist/prankjs.esm.js",
   "browser": "dist/prankjs.umd.js",
-  "types": "dist/prankjs.d.ts",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HomiG/PrankJS.git"
+  },
+  "homepage": "https://github.com/HomiG/PrankJS#readme",
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
@@ -20,6 +25,9 @@
     "april fools",
     "typescript",
     "javascript"
+  ],
+  "files": [
+    "dist"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -35,5 +43,8 @@
     "ts-jest": "^29.2.4",
     "tslib": "^2.6.3",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "prankjs": "^0.0.1"
   }
 }

@@ -1,35 +1,37 @@
 # PrankJS
 
-## 🚧 **WARNING: Super Early Development Stage** 🚧
+## 🎉 Welcome to PrankJS! 🎉
 
-PrankJS is a fun and experimental JavaScript library designed to bring a little chaos to your web applications by introducing a variety of pranks and interactive scenarios. However, please note:
+PrankJS is an innovative and playful JavaScript library designed to add a touch of chaos and fun to your web applications. Whether you're looking to surprise your users with unexpected pranks or create interactive scenarios, PrankJS has got you covered.
 
-### **THIS PROJECT IS IN A VERY EARLY STAGE OF DEVELOPMENT.**
+### 🚀 **Project Status: Early Development** 🚀
 
-### 🚨 **NOT EVEN ALPHA VERSION** 🚨
+**Please Note: This project is in its early stages of development.** While we are excited about the potential of PrankJS, it is still under active development and subject to significant changes. Here's what you need to know:
 
-This project is currently in a phase that's even more unstable than an alpha version. This means:
+- **Frequent Refactors:** The structure, API, and features of the library may change as we refine and improve the project.
+- **Incomplete Features:** Some pranks and scenarios are still being developed and may contain bugs.
+- **Breaking Changes:** Expect breaking changes as we iterate and enhance the library.
+- **No Guarantees:** The library may not function as expected in its current form.
 
-- **Heavy Refactors Are Imminent:** The structure, API, and even the purpose of the library might change dramatically as development progresses.
-- **Incomplete Features:** Most features are either not fully implemented or may have significant bugs.
-- **Breaking Changes:** Expect breaking changes with little or no warning as the project evolves.
-- **No Guarantees:** The library may not work as expected, or at all, in its current form.
+### What's in the Works?
 
-### What’s in the Works?
+- **Core Pranks:** Implementations of various pranks such as floating objects, random redirects, and screen flipping.
+- **Interactive Scenarios:** Prototypes of scenarios that combine multiple pranks for a more immersive experience.
+- **Cleanup Functions:** Mechanisms to undo the pranks, ensuring a smooth user experience.
 
-- **Core Pranks:** Basic implementations of various pranks like floating objects, random redirects, and screen flipping.
-- **Interactive Scenarios:** Early prototypes of scenarios that combine multiple pranks for a more immersive experience.
-- **Cleanup Functions:** Mechanisms to undo the pranks, though these are still being fleshed out.
+### What's Missing?
 
-### What’s Missing?
-
-- **Documentation:** The current documentation is sparse and subject to change. Proper usage guides and examples will be added as the library matures.
-- **Tests:** Testing is minimal at this stage, so stability cannot be guaranteed.
-- **Performance Optimizations:** The library has not been optimized for performance, and using it may have a significant impact on your application’s performance.
+- **Comprehensive Documentation:k* Detailed usage guides and examples will be added as the library matures.
+- **Extensive Testing:** Testing is minimal at this stage, so stability cannot be guaranteed.
+- **Performance Optimizations:** The library has not been optimized for performance yet.
 
 ### Contributing
 
-We welcome contributions, but please be aware that the codebase is likely to change significantly. If you’re interested in contributing, please reach out to discuss the roadmap and where you can best help.
+We are actively seeking contributors to help us build and improve PrankJS. If you're interested in contributing, please reach out to discuss the roadmap and how you can best help. We welcome all contributions, from bug fixes to new features.
 
+### How to Get Started
 
-**Not recommended for production use!**
+1. **Clone the Repository:**
+   ```sh
+   git clone https://github.com/HomiG/PrankJS.git
+   cd PrankJS

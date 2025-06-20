@@ -4,94 +4,463 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PrankJS Demo</title>
+  <title>PrankJS - Add Delightful Chaos to Any Web App</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
+    :root {
+      --primary: #8A2BE2;
+      --primary-dark: #7B1FA2;
+      --secondary: #FF4081;
+      --tertiary: #00BCD4;
+      --success: #41C7AF;
+      --warning: #FFAB00;
+      --danger: #FF5252;
+      --dark: #121212;
+      --light: #FFFFFF;
+      --gray-100: #f8f9fa;
+      --gray-200: #e9ecef;
+      --gray-800: #343a40;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #8A2BE2, #FF4081, #00BCD4);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      opacity: 0.8;
+      z-index: -1;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/png;base64,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');
+      opacity: 0.05;
+      z-index: -1;
+      pointer-events: none;
     }
 
     header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 1rem 0;
+      padding: 4rem 2rem;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
     }
 
-    main {
-      padding: 2rem;
-      max-width: 800px;
+    .logo {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary), var(--tertiary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem 4rem;
     }
 
-    h2 {
-      color: #4CAF50;
+    .glass-card {
+      background: rgba(18, 18, 18, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--light);
       text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .prank-buttons {
+      font-weight: 700;
+      position: relative;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+      align-items: center;
       justify-content: center;
     }
 
-    .prank-buttons button {
-      padding: 1rem 2rem;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      flex-grow: 1;
+      margin: 0 15px;
+    }
+
+    .prank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prank-button {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      color: var(--light);
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       font-size: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    .prank-buttons button:hover {
-      background-color: #45a049;
-      transform: translateY(-2px);
+    .prank-button i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      transition: all 0.3s;
     }
 
-    .prank-buttons button:active {
-      transform: translateY(0);
+    .prank-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .prank-button:hover i {
+      transform: scale(1.2);
+    }
+
+    .random-objects i {
+      color: var(--tertiary);
+    }
+
+    .gravity-switch i {
+      color: var(--secondary);
+    }
+
+    .invert-colors i {
+      color: var(--warning);
+    }
+
+    .fake-error i {
+      color: var(--danger);
+    }
+
+    .flip-screen i {
+      color: var(--success);
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      font-family: 'Courier New', monospace;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      color: var(--light);
+      opacity: 0.8;
+    }
+
+    .code-block .language {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      color: var(--tertiary);
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+    }
+
+    .installation-steps {
+      counter-reset: step-counter;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .installation-steps li {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .installation-steps li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Glowing orb animation in the background */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      z-index: -2;
+    }
+
+    .orb-1 {
+      background: var(--primary);
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      left: -100px;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      background: var(--secondary);
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      right: -50px;
+      animation: float 20s ease-in-out infinite reverse;
+    }
+
+    .orb-3 {
+      background: var(--tertiary);
+      width: 250px;
+      height: 250px;
+      bottom: -50px;
+      left: 30%;
+      animation: float 18s ease-in-out infinite 2s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(-30px, 30px) rotate(180deg);
+      }
+
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+      }
+
+      .prank-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .glass-card {
+        padding: 1.5rem;
+      }
     }
   </style>
-  <script src="dist/prankjs.umd.js"></script>
+  <script src="../dist/prankjs.umd.js"></script>
 </head>
 
 <body>
+  <div class="gradient-bg"></div>
+  <div class="noise-overlay"></div>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
   <header>
-    <h1>PrankJS Demo</h1>
+    <h1 class="logo">PrankJS</h1>
+    <p class="tagline">Add a splash of mischief to your web applications with delightful interactive pranks.</p>
+    <a href="https://github.com/HomiG/PrankJS" class="btn btn-primary">
+      <i class="fab fa-github"></i> GitHub Repo
+    </a>
   </header>
-  <main>
-    <h2>Choose a Prank</h2>
-    <div class="prank-buttons">
-      <button
-        onclick="PrankJS.Pranks.randomFloatingObjects('https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png')">
-        <i class="fas fa-random"></i> Random Floating Objects
-      </button>
-      <button onclick="PrankJS.Pranks.gravitySwitch(5000, 1000, 5)">
-        <i class="fas fa-arrows-alt-v"></i> Gravity Switch
-      </button>
-      <button onclick="PrankJS.Pranks.invertColors(5000, 1000, 5)">
-        <i class="fas fa-adjust"></i> Invert Colors
-      </button>
-      <button onclick="PrankJS.Pranks.fakeError('This is a fake error message!')">
-        <i class="fas fa-exclamation-triangle"></i> Fake Error
-      </button>
-      <button onclick="PrankJS.Pranks.flipScreen(3000)">
-        <i class="fas fa-sync-alt"></i> Flip Screen
-      </button>
+
+  <div class="container">
+    <div class="glass-card">
+      <h2 class="section-title">Try It Out</h2>
+      <p style="text-align: center; margin-bottom: 2rem;">Click any of these buttons to see PrankJS in action!</p>
+
+      <div class="prank-grid">
+        <button class="prank-button random-objects"
+          onclick="PrankJS.Pranks.randomFloatingObjects('https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png')">
+          <i class="fas fa-images"></i>
+          Random Floating Objects
+        </button>
+
+        <button class="prank-button gravity-switch" onclick="PrankJS.Pranks.gravitySwitch(5000, 1000, 5)">
+          <i class="fas fa-arrows-alt-v"></i>
+          Gravity Switch
+        </button>
+
+        <button class="prank-button invert-colors" onclick="PrankJS.Pranks.invertColors(5000, 1000, 5)">
+          <i class="fas fa-adjust"></i>
+          Invert Colors
+        </button>
+
+        <button class="prank-button fake-error" onclick="PrankJS.Pranks.fakeError('This is a fake error message!')">
+          <i class="fas fa-exclamation-triangle"></i>
+          Fake Error
+        </button>
+
+        <button class="prank-button flip-screen" onclick="PrankJS.Pranks.flipScreen(3000)">
+          <i class="fas fa-sync-alt"></i>
+          Flip Screen
+        </button>
+      </div>
     </div>
-  </main>
+
+    <div class="glass-card">
+      <h2 class="section-title">Installation</h2>
+
+      <ul class="installation-steps">
+        <li>
+          <strong>Install with npm</strong>
+          <div class="code-block">
+            <span class="language">bash</span>
+            <code>npm install prankjs</code>
+          </div>
+        </li>
+        <li>
+          <strong>Import in your project</strong>
+          <div class="code-block">
+            <span class="language">javascript</span>
+            <code>import { Pranks } from 'prankjs';</code>
+          </div>
+        </li>
+        <li>
+          <strong>Use any prank function</strong>
+          <div class="code-block">
+            <span class="language">javascript</span>
+            <code>Pranks.shakeElement('.navigation');</code>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made with ❤️ by HomiG</p>
+    <div class="social-links">
+      <a href="https://github.com/HomiG/PrankJS" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.npmjs.com/package/prankjs" target="_blank"><i class="fab fa-npm"></i></a>
+    </div>
+  </footer>
 </body>
 
 </html>
