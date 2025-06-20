@@ -1,5 +1,9 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prank.JS 🎉</title>
 
 <head>
   <meta charset="UTF-8" />
@@ -463,4 +467,23 @@
   </footer>
 </body>
 
+    <script>
+      const randomFloatingObjectsBtn = document.getElementById(
+        "random-floating-object-btn",
+      );
+      const invertColorsBtn = document.getElementById("invert-colors-btn");
+
+      randomFloatingObjectsBtn.addEventListener("click", function () {
+        PrankJS.Pranks.randomFloatingObjects(
+          "https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png",
+        );
+      });
+
+      invertColorsBtn.addEventListener("click", function () {
+        PrankJS.Pranks.invertColors(5000, 1000, 5);
+      });
+
+      // PrankJS.fakeError('https://s3.amazonaws.com/izotopedownloads/docs/ozone9/en/images/imager/module-interface.png');
+    </script>
+  </body>
 </html>
