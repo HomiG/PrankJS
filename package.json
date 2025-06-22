@@ -1,7 +1,7 @@
 {
   "name": "prankjs",
-  "version": "0.0.4",
-  "description": "Used For Pranking on ANY SPA",
+  "version": "0.0.5",
+  "description": "A playful JavaScript library for adding interactive pranks to web applications",
   "main": "dist/prankjs.cjs.js",
   "module": "dist/prankjs.esm.js",
   "browser": "dist/prankjs.umd.js",
@@ -15,7 +15,8 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
-    "dev": "concurrently \"rollup -c -w\" \"live-server --watch=dist --entry-file=src/index.html\""
+    "dev": "concurrently \"rollup -c -w\" \"live-server --watch=dist --entry-file=src/index.html\"",
+    "prepublishOnly": "npm run build"
   },
   "author": "HomiG",
   "license": "ISC",
@@ -23,11 +24,15 @@
     "prank",
     "fun",
     "april fools",
+    "web",
+    "interactive",
     "typescript",
     "javascript"
   ],
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -43,8 +48,5 @@
     "ts-jest": "^29.2.4",
     "tslib": "^2.6.3",
     "typescript": "^5.5.4"
-  },
-  "dependencies": {
-    "prankjs": "^0.0.1"
   }
 }
