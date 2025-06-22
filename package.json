@@ -1,6 +1,6 @@
 {
   "name": "prankjs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A playful JavaScript library for adding interactive pranks to web applications",
   "main": "dist/prankjs.cjs.js",
   "module": "dist/prankjs.esm.js",
