@@ -273,38 +273,6 @@
       transform: scale(1.2);
     }
 
-    .random-objects i {
-      color: var(--tertiary);
-    }
-
-    .gravity-switch i {
-      color: var(--secondary);
-    }
-
-    .invert-colors i {
-      color: var(--warning);
-    }
-
-    .fake-error i {
-      color: var(--danger);
-    }
-
-    .flip-screen i {
-      color: var(--success);
-    }
-
-    .shake-element i {
-      color: var(--primary);
-    }
-
-    .keyboard-lock i {
-      color: #9C27B0;
-    }
-
-    .mouse-trail i {
-      color: #00BCD4;
-    }
-
     .code-block {
       background: rgba(0, 0, 0, 0.2);
       padding: 1.5rem;
@@ -515,6 +483,135 @@
       }
     }
 
+    /* Prank categories styling */
+    .prank-category {
+      margin-bottom: 2rem;
+    }
+
+    .prank-category h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: var(--light);
+      opacity: 0.9;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Tab navigation for pranks */
+    .tab-container {
+      margin-bottom: 2rem;
+    }
+
+    .tab-navigation {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-button {
+      padding: 0.7rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: var(--light);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .tab-button.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 5px 15px rgba(224, 30, 99, 0.4);
+    }
+
+    .tab-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .tab-button.active:hover {
+      background: var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Prank group headers */
+    .prank-group-header {
+      margin: 2rem 0 1rem;
+      font-size: 1.6rem;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .prank-group-header i {
+      color: var(--primary);
+    }
+
+    /* Scenario cards */
+    .scenario-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .scenario-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 0.75rem;
+    }
+
+    .scenario-icon {
+      font-size: 2rem;
+    }
+
+    .scenario-title {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+
+    .scenario-description {
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .scenario-pranks {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .scenario-pranks h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .scenario-pranks ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
     /* Responsive styles */
     @media (max-width: 768px) {
       .logo {
@@ -539,6 +636,16 @@
 
       .badge {
         display: none;
+      }
+
+      .tab-navigation {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .tab-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -575,50 +682,297 @@
   </header>
 
   <div class="container">
+  
     <div class="card">
-      <h2 class="section-title">Try It Out</h2>
-      <p style="text-align: center; margin-bottom: 2rem;">Click any of these buttons to see PrankJS in action!</p>
+      <h2 class="section-title">Interactive Demo</h2>
 
-      <div class="prank-grid">
-        <button class="prank-button random-objects" id="floating-objects-btn">
-          <i class="fas fa-images"></i>
-          Random Floating Objects
-        </button>
+      <div class="tab-container">
+        <div class="tab-navigation">
+          <button class="tab-button active" data-tab="pranks">Individual Pranks</button>
+          <button class="tab-button" data-tab="scenarios">Prank Scenarios</button>
+        </div>
 
-        <button class="prank-button gravity-switch" id="gravity-switch-btn">
-          <i class="fas fa-arrow-down"></i>
-          Gravity Switch
-        </button>
+        <!-- Individual Pranks Tab -->
+        <div id="pranks" class="tab-content active">
+          <div class="prank-category">
+            <h3 class="prank-group-header">
+              <i class="fas fa-hand-sparkles"></i>
+              Visual Pranks
+            </h3>
+            <div class="prank-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+              <button class="prank-button" id="invert-colors-btn">
+                <i class="fas fa-adjust" style="color: #AB47BC;"></i>
+                Invert Colors
+              </button>
 
-        <button class="prank-button invert-colors" id="invert-colors-btn">
-          <i class="fas fa-adjust"></i>
-          Invert Colors
-        </button>
+              <button class="prank-button" id="flip-screen-btn">
+                <i class="fas fa-sync-alt" style="color: #66BB6A;"></i>
+                Flip Screen
+              </button>
 
-        <button class="prank-button fake-error" id="fake-error-btn">
-          <i class="fas fa-exclamation-triangle"></i>
-          Fake Error
-        </button>
+              <button class="prank-button" id="mirror-effect-btn">
+                <i class="fas fa-exchange-alt" style="color: #42A5F5;"></i>
+                Mirror Effect
+              </button>
 
-        <button class="prank-button flip-screen" id="flip-screen-btn">
-          <i class="fas fa-sync-alt"></i>
-          Flip Screen
-        </button>
+              <button class="prank-button" id="random-blur-btn">
+                <i class="fas fa-dot-circle" style="color: #4DB6AC;"></i>
+                Random Blur
+              </button>
 
-        <button class="prank-button shake-element" id="shake-element-btn">
-          <i class="fas fa-volume-up"></i>
-          Shake Elements
-        </button>
+              <button class="prank-button" id="random-emoji-btn">
+                <i class="fas fa-smile" style="color: #FFCA28;"></i>
+                Random Emoji
+              </button>
 
-        <button class="prank-button mouse-trail" id="mouse-trail-btn">
-          <i class="fas fa-mouse-pointer"></i>
-          Mouse Trail
-        </button>
+              <button class="prank-button" id="confetti-explosion-btn">
+                <i class="fas fa-certificate" style="color: #FF7043;"></i>
+                Confetti Explosion
+              </button>
+            </div>
+          </div>
 
-        <button class="prank-button keyboard-lock" id="keyboard-lock-btn">
-          <i class="fas fa-keyboard"></i>
-          Keyboard Lock
-        </button>
+          <div class="prank-category">
+            <h3 class="prank-group-header">
+              <i class="fas fa-people-arrows"></i>
+              Interactive Pranks
+            </h3>
+            <div class="prank-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+              <button class="prank-button" id="mouse-trail-btn">
+                <i class="fas fa-mouse-pointer" style="color: #26A69A;"></i>
+                Mouse Trail
+              </button>
+
+              <button class="prank-button" id="keyboard-lock-btn">
+                <i class="fas fa-keyboard" style="color: #5C6BC0;"></i>
+                Keyboard Lock
+              </button>
+
+              <button class="prank-button" id="hijack-scroll-btn">
+                <i class="fas fa-arrows-alt-v" style="color: #78909C;"></i>
+                Hijack Scroll
+              </button>
+
+              <button class="prank-button" id="jumble-text-btn">
+                <i class="fas fa-random" style="color: #9CCC65;"></i>
+                Jumble Text
+              </button>
+
+              <button class="prank-button" id="random-typing-btn">
+                <i class="fas fa-i-cursor" style="color: #EC407A;"></i>
+                Random Typing
+              </button>
+
+              <button class="prank-button" id="random-sounds-btn">
+                <i class="fas fa-volume-up" style="color: #5C6BC0;"></i>
+                Random Sounds
+              </button>
+            </div>
+          </div>
+
+          <div class="prank-category">
+            <h3 class="prank-group-header">
+              <i class="fas fa-magic"></i>
+              Element Manipulation Pranks
+            </h3>
+            <div class="prank-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+              <button class="prank-button" id="shake-element-btn">
+                <i class="fas fa-hand-rock" style="color: #FFA726;"></i>
+                Shake Elements
+              </button>
+
+              <button class="prank-button" id="disappearing-elements-btn">
+                <i class="fas fa-ghost" style="color: #7E57C2;"></i>
+                Disappearing Elements
+              </button>
+
+              <button class="prank-button" id="gravity-switch-btn">
+                <i class="fas fa-arrow-down" style="color: #29B6F6;"></i>
+                Gravity Switch
+              </button>
+
+              <button class="prank-button" id="random-floating-objects-btn">
+                <i class="fas fa-images" style="color: #FF7043;"></i>
+                Random Floating Objects
+              </button>
+
+              <button class="prank-button" id="floating-object-btn">
+                <i class="fas fa-image" style="color: #4DB6AC;"></i>
+                Floating Object
+              </button>
+
+              <button class="prank-button" id="random-redirect-btn">
+                <i class="fas fa-link" style="color: #EF5350;"></i>
+                Random Redirect
+              </button>
+            </div>
+          </div>
+
+          <div class="prank-category">
+            <h3 class="prank-group-header">
+              <i class="fas fa-exclamation-circle"></i>
+              Notification Pranks
+            </h3>
+            <div class="prank-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+              <button class="prank-button" id="fake-error-btn">
+                <i class="fas fa-exclamation-triangle" style="color: #EF5350;"></i>
+                Fake Error
+              </button>
+
+              <button class="prank-button" id="fake-loading-screen-btn">
+                <i class="fas fa-spinner" style="color: #EC407A;"></i>
+                Fake Loading Screen
+              </button>
+
+              <button class="prank-button" id="popup-prank-btn">
+                <i class="fas fa-comment-dots" style="color: #FF7043;"></i>
+                Popup Prank
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenarios Tab -->
+        <div id="scenarios" class="tab-content">
+          <p style="text-align: center; margin-bottom: 2rem;">
+            Scenarios combine multiple pranks for a more immersive experience.
+            Click any scenario below to see it in action.
+          </p>
+
+          <div class="scenario-card">
+            <div class="scenario-header">
+              <i class="fas fa-vial scenario-icon" style="color: #FF4081;"></i>
+              <h3 class="scenario-title">Demo Disruption</h3>
+            </div>
+            <p class="scenario-description">
+              A simple demonstration that combines multiple pranks for quick testing.
+            </p>
+            <div class="scenario-pranks">
+              <h4>Included Pranks:</h4>
+              <ul>
+                <li>flipScreen()</li>
+                <li>fakeError()</li>
+                <li>randomTyping()</li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" id="demo-disruption-btn" style="width: 100%; margin-top: 1rem;">
+              Try Demo Disruption
+            </button>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-header">
+              <i class="fas fa-briefcase scenario-icon" style="color: #00B0FF;"></i>
+              <h3 class="scenario-title">Office Prank</h3>
+            </div>
+            <p class="scenario-description">
+              Designed for office environments, gradually applying pranks that escalate in noticeable effect.
+            </p>
+            <div class="scenario-pranks">
+              <h4>Included Pranks:</h4>
+              <ul>
+                <li>mouseTrail()</li>
+                <li>shakeElement('button', '.header', 'input')</li>
+                <li>jumbleText()</li>
+                <li>randomFloatingObjects()</li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" id="office-prank-btn" style="width: 100%; margin-top: 1rem;">
+              Try Office Prank
+            </button>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-header">
+              <i class="fas fa-users scenario-icon" style="color: #7E57C2;"></i>
+              <h3 class="scenario-title">Meeting Disruptor</h3>
+            </div>
+            <p class="scenario-description">
+              Perfect for creating simulated technical issues during presentations.
+            </p>
+            <div class="scenario-pranks">
+              <h4>Included Pranks:</h4>
+              <ul>
+                <li>fakeError('Critical system update required')</li>
+                <li>keyboardLock()</li>
+                <li>popupPrank()</li>
+                <li>randomSounds() (optional)</li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" id="meeting-disruptor-btn" style="width: 100%; margin-top: 1rem;">
+              Try Meeting Disruptor
+            </button>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-header">
+              <i class="fas fa-eye scenario-icon" style="color: #FFA000;"></i>
+              <h3 class="scenario-title">Visual Chaos</h3>
+            </div>
+            <p class="scenario-description">
+              Combines various visual effects for maximum impact and screen disruption.
+            </p>
+            <div class="scenario-pranks">
+              <h4>Included Pranks:</h4>
+              <ul>
+                <li>invertColors(3000, 0, 1)</li>
+                <li>randomEmoji()</li>
+                <li>randomBlur()</li>
+                <li>flipScreen()</li>
+                <li>mirrorEffect()</li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" id="visual-chaos-btn" style="width: 100%; margin-top: 1rem;">
+              Try Visual Chaos
+            </button>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-header">
+              <i class="fas fa-calendar-day scenario-icon" style="color: #4CAF50;"></i>
+              <h3 class="scenario-title">April Fools</h3>
+            </div>
+            <p class="scenario-description">
+              A comprehensive April 1st prank sequence with multiple effects over time.
+            </p>
+            <div class="scenario-pranks">
+              <h4>Included Pranks:</h4>
+              <ul>
+                <li>fakeLoadingScreen()</li>
+                <li>gravitySwitch()</li>
+                <li>disappearingElements()</li>
+                <li>randomRedirect(['https://www.youtube.com/watch?v=dQw4w9WgXcQ', ...])</li>
+                <li>confettiExplosion()</li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" id="april-fools-btn" style="width: 100%; margin-top: 1rem;">
+              Try April Fools
+            </button>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-header">
+              <i class="fas fa-chart-line scenario-icon" style="color: #F44336;"></i>
+              <h3 class="scenario-title">Gradual Escalation</h3>
+            </div>
+            <p class="scenario-description">
+              Starts with subtle pranks that gradually escalate over time for maximum surprise.
+            </p>
+            <div class="scenario-pranks">
+              <h4>Included Pranks:</h4>
+              <ul>
+                <li>mouseTrail()</li>
+                <li>randomTyping()</li>
+                <li>shakeElement('button', 'a', 'input')</li>
+                <li>floatingObject(...) & randomSounds()</li>
+                <li>flipScreen(), fakeError(), confettiExplosion()</li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" id="gradual-escalation-btn" style="width: 100%; margin-top: 1rem;">
+              Try Gradual Escalation
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -626,15 +980,23 @@
       <h2 class="section-title">Features</h2>
       <div class="features">
         <div class="feature-item">
-          <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3 class="feature-title">Easy to Use</h3>
-          <p class="feature-desc">Simple API with minimal setup required. Just import and call the prank functions!</p>
+          <div class="feature-icon"><i class="fas fa-box-open"></i></div>
+          <h3 class="feature-title">20+ Ready-Made Pranks</h3>
+          <p class="feature-desc">A comprehensive collection of web-based pranks from subtle to obvious, all ready to
+            use.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+          <h3 class="feature-title">Pre-Built Scenarios</h3>
+          <p class="feature-desc">Combination pranks designed for specific situations like April Fools' Day or office
+            environments.</p>
         </div>
 
         <div class="feature-item">
           <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
           <h3 class="feature-title">Modular Design</h3>
-          <p class="feature-desc">Import only the pranks you need, keeping your bundle size small.</p>
+          <p class="feature-desc">Import only the pranks you need, keeping your bundle size small and efficient.</p>
         </div>
 
         <div class="feature-item">
@@ -642,40 +1004,112 @@
           <h3 class="feature-title">TypeScript Support</h3>
           <p class="feature-desc">Fully typed API for better developer experience and code completion.</p>
         </div>
+
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-desktop"></i></div>
+          <h3 class="feature-title">Browser Compatible</h3>
+          <p class="feature-desc">Works in all modern browsers with graceful fallbacks.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+          <h3 class="feature-title">Customizable</h3>
+          <p class="feature-desc">Most pranks accept parameters to customize their behavior and appearance.</p>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <h2 class="section-title">Installation</h2>
 
-      <ul class="installation-steps">
-        <li>
-          <strong>Install with npm</strong>
-          <div class="code-block">
-            <span class="language">bash</span>
-            <code>npm install prankjs</code>
-          </div>
-        </li>
-        <li>
-          <strong>Import in your project</strong>
-          <div class="code-block">
-            <span class="language">javascript</span>
-            <code>import { Pranks } from 'prankjs';</code>
-          </div>
-        </li>
-        <li>
-          <strong>Use any prank function</strong>
-          <div class="code-block">
-            <span class="language">javascript</span>
-            <code>// Examples:
-Pranks.shakeElement('.navigation');
-Pranks.invertColors(3000, 0, 1);
-Pranks.fakeError('This is a fake error message!');
-Pranks.randomFloatingObjects('https://example.com/image.png');</code>
-          </div>
-        </li>
-      </ul>
-    </div>
+  <div class="card">
+    <h2 class="section-title">Installation & Usage</h2>
+  
+    <ul class="installation-steps">
+      <li>
+        <strong>Install with npm</strong>
+        <div class="code-block">
+          <span class="language">bash</span>
+          <code>npm install prankjs</code>
+        </div>
+      </li>
+  
+      <li>
+        <strong>Import in your project</strong>
+        <div class="code-block">
+          <span class="language">javascript</span>
+          <code>import { Pranks, Scenarios } from 'prankjs';</code>
+        </div>
+      </li>
+  
+      <li>
+        <strong>Use individual pranks</strong>
+        <div class="code-block">
+          <span class="language">javascript</span>
+          <code>// Element manipulation pranks
+  Pranks.shakeElement('.navigation');
+  Pranks.disappearingElements();
+  Pranks.gravitySwitch();
+  
+  // Visual pranks
+  Pranks.invertColors(3000, 0, 1);
+  Pranks.flipScreen();
+  Pranks.mirrorEffect();
+  Pranks.fakeError('This is a fake error message!');
+  Pranks.fakeLoadingScreen();
+  Pranks.randomBlur();
+  
+  // Interactive pranks
+  Pranks.floatingObject({
+    url: 'https://example.com/image.png',
+    width: '100px',
+    height: '100px',
+    animate: true,
+    clickable: true
+  });
+  Pranks.randomFloatingObjects('https://example.com/image.png');
+  Pranks.randomEmoji();
+  Pranks.mouseTrail();
+  Pranks.confettiExplosion();
+  
+  // Control pranks
+  Pranks.keyboardLock();
+  Pranks.hijackScroll();
+  Pranks.jumbleText();
+  Pranks.randomTyping();
+  
+  // Notification pranks
+  Pranks.popupPrank();
+  Pranks.randomSounds();
+  Pranks.randomRedirect(['https://example.com', 'https://github.com']);</code>
+        </div>
+      </li>
+  
+      <li>
+        <strong>Use pre-built prank scenarios</strong>
+        <div class="code-block">
+          <span class="language">javascript</span>
+          <code>// Basic demo of multiple pranks
+  Scenarios.demoDisruption();
+  
+  // Office environment prank sequence (with custom timing between pranks)
+  Scenarios.officePrank(5000); // 5 seconds between pranks
+  
+  // Disrupts meetings or presentations (optionally with sound effects)
+  Scenarios.meetingDisruptor(true); // with sound effects
+  
+  // Visual chaos with screen effects (specify duration in ms)
+  Scenarios.visualChaos(15000); // 15 seconds of chaos
+  
+  // April Fools' sequence (with optional URLs to redirect links to)
+  Scenarios.aprilFools(['https://example.com/rickroll']);
+  
+  // Gradual escalation from subtle to obvious pranks
+  Scenarios.gradualEscalation(10000, true); // 10s base delay, fast mode</code>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
   </div>
 
   <footer>
@@ -686,10 +1120,27 @@ Pranks.randomFloatingObjects('https://example.com/image.png');</code>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/prankjs@latest/dist/prankjs.umd.js"></script>
+  <script src="../dist/prankjs.umd.js"></script>
   <script>
-    // Button event listeners
-    document.getElementById('floating-objects-btn').addEventListener('click', function () {
+    // Tab functionality
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab-button').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.remove('active');
+        });
+
+        // Add active class to clicked tab
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Individual Prank Button Event Listeners
+    document.getElementById('random-floating-objects-btn').addEventListener('click', function () {
       PrankJS.Pranks.randomFloatingObjects('https://cdn-icons-png.flaticon.com/512/5692/5692931.png');
     });
 
@@ -725,11 +1176,107 @@ Pranks.randomFloatingObjects('https://example.com/image.png');</code>
       PrankJS.Pranks.keyboardLock();
     });
 
-    // Add some extra interaction for better UX
-    const buttons = document.querySelectorAll('.prank-button');
-    buttons.forEach(button => {
+    document.getElementById('disappearing-elements-btn').addEventListener('click', function () {
+      PrankJS.Pranks.disappearingElements();
+    });
+
+    document.getElementById('fake-loading-screen-btn').addEventListener('click', function () {
+      PrankJS.Pranks.fakeLoadingScreen();
+    });
+
+    document.getElementById('hijack-scroll-btn').addEventListener('click', function () {
+      PrankJS.Pranks.hijackScroll();
+    });
+
+    document.getElementById('jumble-text-btn').addEventListener('click', function () {
+      PrankJS.Pranks.jumbleText();
+    });
+
+    document.getElementById('mirror-effect-btn').addEventListener('click', function () {
+      PrankJS.Pranks.mirrorEffect();
+      // Reset after 3 seconds
+      setTimeout(() => {
+        document.body.style.transform = '';
+      }, 3000);
+    });
+
+    document.getElementById('popup-prank-btn').addEventListener('click', function () {
+      PrankJS.Pranks.popupPrank();
+    });
+
+    document.getElementById('random-blur-btn').addEventListener('click', function () {
+      PrankJS.Pranks.randomBlur();
+    });
+
+    document.getElementById('random-emoji-btn').addEventListener('click', function () {
+      PrankJS.Pranks.randomEmoji();
+    });
+
+    document.getElementById('random-sounds-btn').addEventListener('click', function () {
+      PrankJS.Pranks.randomSounds();
+    });
+
+    document.getElementById('random-typing-btn').addEventListener('click', function () {
+      PrankJS.Pranks.randomTyping();
+    });
+
+    document.getElementById('confetti-explosion-btn').addEventListener('click', function () {
+      PrankJS.Pranks.confettiExplosion();
+    });
+
+    document.getElementById('floating-object-btn').addEventListener('click', function () {
+      PrankJS.Pranks.floatingObject({
+        url: 'https://cdn-icons-png.flaticon.com/512/1168/1168643.png',
+        width: '80px',
+        height: '80px',
+        animate: true,
+        clickable: true
+      });
+    });
+
+    document.getElementById('random-redirect-btn').addEventListener('click', function () {
+      if (confirm('This will change all links on the page. Proceed?')) {
+        PrankJS.Pranks.randomRedirect([
+          'https://www.example.com',
+          'https://github.com/HomiG/PrankJS',
+          'https://www.npmjs.com/package/prankjs'
+        ]);
+        // Show alert after redirects are set
+        setTimeout(() => {
+          alert('All links have been changed! Try clicking any link on the page.');
+        }, 500);
+      }
+    });
+
+    // Scenario Button Event Listeners
+    document.getElementById('demo-disruption-btn').addEventListener('click', function () {
+      PrankJS.Scenarios.demoDisruption();
+    });
+
+    document.getElementById('office-prank-btn').addEventListener('click', function () {
+      PrankJS.Scenarios.officePrank(2000); // Faster for demo
+    });
+
+    document.getElementById('meeting-disruptor-btn').addEventListener('click', function () {
+      PrankJS.Scenarios.meetingDisruptor(false); // No sound for demo
+    });
+
+    document.getElementById('visual-chaos-btn').addEventListener('click', function () {
+      PrankJS.Scenarios.visualChaos(10000); // 10 seconds for demo
+    });
+
+    document.getElementById('april-fools-btn').addEventListener('click', function () {
+      PrankJS.Scenarios.aprilFools();
+    });
+
+    document.getElementById('gradual-escalation-btn').addEventListener('click', function () {
+      PrankJS.Scenarios.gradualEscalation(3000, true); // Fast mode for demo
+    });
+
+    // Add visual feedback to all buttons
+    const allButtons = document.querySelectorAll('.prank-button, .btn');
+    allButtons.forEach(button => {
       button.addEventListener('click', function () {
-        // Add a visual feedback when clicked
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
           this.style.transform = '';
