@@ -19,7 +19,7 @@
     "prepublishOnly": "npm run build"
   },
   "author": "HomiG",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "prank",
     "fun",
