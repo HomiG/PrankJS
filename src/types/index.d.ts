@@ -123,15 +123,42 @@ declare module 'prankjs' {
         export function confettiExplosion(): void;
     }
 
-    /**
-     * Namespace containing all available scenarios
-     * (combinations of multiple pranks)
-     */
     export namespace Scenarios {
         /**
          * Demo disruption scenario that combines multiple pranks
          */
         export function demoDisruption(): void;
+
+        /**
+         * A prank scenario designed for office environments
+         * @param timing - Time in milliseconds between each prank activation
+         */
+        export function officePrank(timing?: number): void;
+
+        /**
+         * A prank scenario designed to disrupt meetings or presentations
+         * @param includeSound - Whether to include sound effects
+         */
+        export function meetingDisruptor(includeSound?: boolean): void;
+
+        /**
+         * A prank scenario that causes visual chaos on the screen
+         * @param duration - Duration in milliseconds for the entire scenario
+         */
+        export function visualChaos(duration?: number): void;
+
+        /**
+         * A comprehensive April Fools prank scenario
+         * @param redirectUrls - Optional array of URLs to redirect links to
+         */
+        export function aprilFools(redirectUrls?: string[]): void;
+
+        /**
+         * A scenario that starts with subtle pranks and gradually escalates
+         * @param baseDelay - Base delay in milliseconds between pranks
+         * @param fastMode - If true, reduces delays for quicker demonstration
+         */
+        export function gradualEscalation(baseDelay?: number, fastMode?: boolean): void;
     }
 
     // Add utility functions if you want to expose them
