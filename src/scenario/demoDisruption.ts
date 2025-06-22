@@ -1,7 +1,7 @@
 import { floatingObject, flipScreen, fakeError, randomTyping } from '../pranks/index';
 
 export default function demoDisruption() {
-    floatingObject();
+    // floatingObject();
     flipScreen();
     fakeError();
     randomTyping();

@@ -1,25 +1,38 @@
 {
   "name": "prankjs",
-  "version": "0.0.4",
-  "description": "Used For Pranking on ANY SPA",
+  "version": "0.0.5",
+  "description": "A playful JavaScript library for adding interactive pranks to web applications",
   "main": "dist/prankjs.cjs.js",
   "module": "dist/prankjs.esm.js",
   "browser": "dist/prankjs.umd.js",
-  "types": "dist/prankjs.d.ts",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HomiG/PrankJS.git"
+  },
+  "homepage": "https://github.com/HomiG/PrankJS#readme",
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
-    "dev": "concurrently \"rollup -c -w\" \"live-server --watch=dist --entry-file=src/index.html\""
+    "dev": "concurrently \"rollup -c -w\" \"live-server --watch=dist --entry-file=src/index.html\"",
+    "prepublishOnly": "npm run build"
   },
   "author": "HomiG",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "prank",
     "fun",
     "april fools",
+    "web",
+    "interactive",
     "typescript",
     "javascript"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",

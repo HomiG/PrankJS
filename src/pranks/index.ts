@@ -19,3 +19,5 @@ export { default as randomRedirect } from './randomRedirect';
 export { default as randomSounds } from './randomSounds';
 export { default as randomTyping } from './randomTyping';
 export { default as shakeElement } from './shakeElement';
+export { default as confettiExplosion } from './confettiExplosion';
+// export { default as flip}
