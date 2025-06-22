@@ -16,6 +16,23 @@ Collecting workspace information
 
 PrankJS is a lightweight, easy-to-use library that allows you to add fun and interactive pranks to your web applications. Whether you're creating an April Fools' Day surprise, adding playful interactions to your website, or just wanting to make your users smile, PrankJS has got you covered.
 
+
+## 🎮 Live Demo
+
+See PrankJS in action on our interactive demo page:
+
+<p align="center">
+  <a href="https://homig.github.io/PrankJS/" target="_blank">
+    <img src="https://img.shields.io/badge/LIVE%20DEMO-Try%20It%20Now!-brightgreen?style=for-the-badge" alt="Live Demo" width="250">
+  </a>
+</p>
+
+Try out different pranks, see how they work, and get inspired for your own implementations. The demo page showcases all available pranks and scenarios with easy-to-click examples.
+
+You can also view the [demo page source code](https://github.com/HomiG/PrankJS/blob/main/docs/index.html) to learn how to implement these pranks in your own projects.
+
+
+
 ## 📦 Installation
 
 ### npm
