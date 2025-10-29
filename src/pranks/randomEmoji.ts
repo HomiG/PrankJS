@@ -1,3 +1,5 @@
+import { createOverlayContainer, injectStyles, scheduleCleanup } from '../utils/helperFunctions';
+
 /**
  * Displays random emojis that float across the screen.
  * 
@@ -14,22 +16,14 @@ const randomEmoji = (): void => {
     ];
 
     // Create container for emojis
-    const emojiContainer = document.createElement('div');
-    emojiContainer.style.position = 'fixed';
-    emojiContainer.style.top = '0';
-    emojiContainer.style.left = '0';
-    emojiContainer.style.width = '100%';
-    emojiContainer.style.height = '100%';
-    emojiContainer.style.pointerEvents = 'none';
-    emojiContainer.style.zIndex = '9999';
-    document.body.appendChild(emojiContainer);
+    const emojiContainer = createOverlayContainer();
 
     // Function to create a random emoji element
     const createEmoji = () => {
         // Create the emoji element
         const emoji = document.createElement('div');
         emoji.style.position = 'absolute';
-        emoji.style.fontSize = `${Math.random() * 20 + 20}px`; // Random size between 20-40px
+        emoji.style.fontSize = `${Math.random() * 20 + 20}px`;
         emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
         // Set random starting position (from bottom of the screen)
@@ -51,8 +45,7 @@ const randomEmoji = (): void => {
     };
 
     // Add CSS animation for floating emojis
-    const style = document.createElement('style');
-    style.textContent = `
+    const style = injectStyles(`
     @keyframes float-emoji {
       0% {
         transform: translate(0, 0) rotate(0deg);
@@ -69,8 +62,7 @@ const randomEmoji = (): void => {
         opacity: 0;
       }
     }
-  `;
-    document.head.appendChild(style);
+  `);
 
     // Create emojis at random intervals
     const createEmojis = () => {
@@ -84,7 +76,7 @@ const randomEmoji = (): void => {
     createEmojis();
 
     // Clean up after 10 seconds
-    setTimeout(() => {
+    scheduleCleanup(() => {
         document.body.removeChild(emojiContainer);
         document.head.removeChild(style);
     }, 10000);

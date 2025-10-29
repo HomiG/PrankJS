@@ -1,3 +1,5 @@
+import { createOverlayContainer, injectStyles, scheduleCleanup } from '../utils/helperFunctions';
+
 /**
  * Creates a fake loading screen overlay that stays for a random amount of time.
  * 
@@ -5,14 +7,8 @@
  */
 const fakeLoadingScreen = (): void => {
     // Create loading overlay
-    const overlay = document.createElement('div');
-    overlay.style.position = 'fixed';
-    overlay.style.top = '0';
-    overlay.style.left = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    overlay.style.zIndex = '99999';
+    const overlay = createOverlayContainer(99999, 'rgba(0, 0, 0, 0.7)');
+    overlay.style.pointerEvents = 'auto';
     overlay.style.display = 'flex';
     overlay.style.flexDirection = 'column';
     overlay.style.alignItems = 'center';
@@ -28,14 +24,12 @@ const fakeLoadingScreen = (): void => {
     spinner.style.animation = 'spin 1s linear infinite';
 
     // Add keyframe animation for the spinner
-    const style = document.createElement('style');
-    style.textContent = `
+    const style = injectStyles(`
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-  `;
-    document.head.appendChild(style);
+  `);
 
     // Create loading text
     const text = document.createElement('p');
@@ -67,14 +61,11 @@ const fakeLoadingScreen = (): void => {
     overlay.appendChild(text);
     overlay.appendChild(progressContainer);
 
-    // Add overlay to document
-    document.body.appendChild(overlay);
-
     // Set a random progress duration between 3 and 8 seconds
     const duration = Math.random() * 5000 + 3000;
     const interval = setInterval(() => {
         const currentWidth = parseFloat(progressBar.style.width) || 0;
-        const increment = Math.random() * 10 + 5; // Random increment between 5-15%
+        const increment = Math.random() * 10 + 5;
 
         if (currentWidth < 85) {
             progressBar.style.width = Math.min(currentWidth + increment, 85) + '%';
@@ -82,7 +73,7 @@ const fakeLoadingScreen = (): void => {
     }, 500);
 
     // After the duration, complete the loading quickly and remove overlay
-    setTimeout(() => {
+    scheduleCleanup(() => {
         clearInterval(interval);
 
         // Complete progress

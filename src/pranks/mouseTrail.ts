@@ -1,3 +1,5 @@
+import { createOverlayContainer, scheduleCleanup } from '../utils/helperFunctions';
+
 /**
  * Creates a trail of elements that follow the mouse cursor.
  * 
@@ -14,15 +16,7 @@ const mouseTrail = (): void => {
     ];
 
     // Create container for trail elements
-    const trailContainer = document.createElement('div');
-    trailContainer.style.position = 'fixed';
-    trailContainer.style.top = '0';
-    trailContainer.style.left = '0';
-    trailContainer.style.width = '100%';
-    trailContainer.style.height = '100%';
-    trailContainer.style.pointerEvents = 'none'; // Ensures the trail doesn't interfere with clicks
-    trailContainer.style.zIndex = '9999';
-    document.body.appendChild(trailContainer);
+    const trailContainer = createOverlayContainer();
 
     // Create trail elements
     for (let i = 0; i < trailLength; i++) {
@@ -72,7 +66,7 @@ const mouseTrail = (): void => {
     updateTrail();
 
     // Clean up after 10 seconds
-    setTimeout(() => {
+    scheduleCleanup(() => {
         document.removeEventListener('mousemove', handleMouseMove);
         document.body.removeChild(trailContainer);
     }, 10000);

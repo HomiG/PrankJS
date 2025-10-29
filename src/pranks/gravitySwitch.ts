@@ -1,8 +1,8 @@
+import { injectStyles } from '../utils/helperFunctions';
+
 export default function gravitySwitch() {
-    // Create a style element
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = `
+    // Create and inject style element
+    injectStyles(`
         @keyframes fall {
             to {
                 transform: translateY(100vh);
@@ -36,9 +36,7 @@ export default function gravitySwitch() {
             animation: dangleFall 8s linear forwards;
             position: relative;
         }
-    `;
-    // Append the style element to the head
-    document.head.appendChild(style);
+    `);
 
     // Select all elements on the page
     const elements = document.querySelectorAll('*');

@@ -1,3 +1,5 @@
+import { createOverlayContainer, scheduleCleanup } from '../utils/helperFunctions';
+
 /**
  * Creates a festive confetti explosion effect on the screen.
  * 
@@ -5,15 +7,7 @@
  */
 const confettiExplosion = (): void => {
     // Create a container for the confetti
-    const container = document.createElement('div');
-    container.style.position = 'fixed';
-    container.style.top = '0';
-    container.style.left = '0';
-    container.style.width = '100%';
-    container.style.height = '100%';
-    container.style.pointerEvents = 'none';
-    container.style.zIndex = '9999';
-    document.body.appendChild(container);
+    const container = createOverlayContainer();
 
     // Confetti configuration
     const confettiCount = 150;
@@ -50,7 +44,7 @@ const confettiExplosion = (): void => {
 
         // Random direction and distance
         const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 250 + 50; // 50-300px from center
+        const distance = Math.random() * 250 + 50;
 
         // Final position calculation
         const x = distance * Math.cos(angle);
@@ -88,7 +82,7 @@ const confettiExplosion = (): void => {
 
     // Create initial explosion of confetti
     for (let i = 0; i < confettiCount; i++) {
-        setTimeout(createConfetti, Math.random() * 500); // Stagger creation over 500ms
+        setTimeout(createConfetti, Math.random() * 500);
     }
 
     // Add celebration sound effect
@@ -121,7 +115,7 @@ const confettiExplosion = (): void => {
     }
 
     // Clean up after 3 seconds
-    setTimeout(() => {
+    scheduleCleanup(() => {
         document.body.removeChild(container);
     }, 3000);
 };

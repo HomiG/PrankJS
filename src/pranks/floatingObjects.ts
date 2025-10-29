@@ -1,15 +1,29 @@
-const floatingObject = (url: string): void => {
-    const img = document.createElement('img');
-    img.src = url;
-    img.style.position = 'fixed';
-    img.style.zIndex = '9999';
-    img.style.width = '100px';
-    img.style.height = '100px';
-    document.body.appendChild(img);
+import floatingObjectWithOptions from './floatingObject';
+import { randomPosition } from '../utils/helperFunctions';
 
+/**
+ * Creates a simple floating object that moves to random positions.
+ * This is a simplified wrapper around the full-featured floatingObject function.
+ * 
+ * @param url - The URL of the image to display
+ * @returns void
+ */
+const floatingObject = (url: string): void => {
+    const position = randomPosition();
+    const img = floatingObjectWithOptions({
+        url,
+        width: '100px',
+        height: '100px',
+        initialPosition: position,
+        animate: false,
+        clickable: false
+    });
+
+    // Move to random positions periodically
     function moveImage(): void {
-        img.style.top = `${Math.random() * window.innerHeight}px`;
-        img.style.left = `${Math.random() * window.innerWidth}px`;
+        const newPosition = randomPosition();
+        img.style.top = newPosition.top;
+        img.style.left = newPosition.left;
     }
 
     setInterval(moveImage, 1000);
