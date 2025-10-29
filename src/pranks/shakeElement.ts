@@ -1,3 +1,5 @@
+import { injectStyles } from '../utils/helperFunctions';
+
 /**
  * Adds a shake effect to the specified elements.
  * 
@@ -6,8 +8,7 @@
  */
 export default function shakeElement(selector: string): void {
     // Define the shake keyframes and class styles
-    const style = document.createElement('style');
-    style.innerHTML = `
+    injectStyles(`
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
             10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -25,9 +26,7 @@ export default function shakeElement(selector: string): void {
             animation: shake 0.5s;
             animation-iteration-count: infinite;
         }
-    `;
-    document.head.appendChild(style);
-
+    `);
 
     // Get the elements matching the selector
     const elements = document.querySelectorAll(selector);

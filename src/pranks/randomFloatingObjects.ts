@@ -1,3 +1,5 @@
+import { randomMilliseconds } from '../utils/helperFunctions';
+
 /**
  * Generates random floating objects with the given image URL.
  * 
@@ -13,26 +15,26 @@ export default function randomFloatingObjects(imageUrl: string) {
         object.src = imageUrl;
         object.classList.add('object');
         object.style.width = '100px';
-        object.style.position = 'fixed'; // 'fixed' position to stay on top
+        object.style.position = 'fixed';
         object.style.top = '0';
         object.style.left = '0';
-        object.style.pointerEvents = 'none'; // Avoid interaction with the page
-        object.style.zIndex = '9999'; // High z-index to ensure it is above all content
+        object.style.pointerEvents = 'none';
+        object.style.zIndex = '9999';
         document.body.appendChild(object);
         return object;
     }
 
     // Function to set a random position for the object
-    function setRandomPosition(element: any) {
-        const x = Math.random() * (window.innerWidth - 100); // -100 to keep Objects fully in view
+    function setRandomPosition(element: HTMLElement) {
+        const x = Math.random() * (window.innerWidth - 100);
         const y = Math.random() * (window.innerHeight - 100);
         element.style.transform = `translate(${x}px, ${y}px)`;
     }
 
     // Function to animate the object
-    function animateObject(element: any) {
+    function animateObject(element: HTMLElement) {
         setRandomPosition(element);
-        const duration = Math.random() * 5000 + 5000;
+        const duration = randomMilliseconds(5000, 10000);
         element.style.transition = `transform ${duration}ms linear`;
         setTimeout(() => animateObject(element), duration);
     }

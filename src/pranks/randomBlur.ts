@@ -1,3 +1,5 @@
+import { selectRandomElements, scheduleCleanup } from '../utils/helperFunctions';
+
 /**
  * Applies random blur effects to elements on the page.
  * 
@@ -5,7 +7,9 @@
  */
 const randomBlur = (): void => {
     // Get all elements that we can safely blur
-    const elements = document.querySelectorAll('img, div, p, h1, h2, h3, h4, h5, h6, section, article, main');
+    const elements = Array.from(
+        document.querySelectorAll('img, div, p, h1, h2, h3, h4, h5, h6, section, article, main')
+    );
 
     // Store original styles to restore later
     const originalStyles = new Map<Element, string>();
@@ -22,21 +26,21 @@ const randomBlur = (): void => {
         const count = Math.min(Math.floor(Math.random() * 8) + 3, elements.length);
 
         // Select random elements and apply blur
-        const shuffled = Array.from(elements).sort(() => 0.5 - Math.random());
+        const selectedElements = selectRandomElements(elements, count);
 
-        for (let i = 0; i < count; i++) {
-            const element = shuffled[i] as HTMLElement;
+        selectedElements.forEach(element => {
+            const htmlElement = element as HTMLElement;
 
             // Store original filter value
-            originalStyles.set(element, element.style.filter || '');
+            originalStyles.set(element, htmlElement.style.filter || '');
 
             // Apply random blur intensity
-            const blurAmount = Math.random() * 5 + 1; // 1-6px blur
-            element.style.filter = `${element.style.filter || ''} blur(${blurAmount}px)`;
+            const blurAmount = Math.random() * 5 + 1;
+            htmlElement.style.filter = `${htmlElement.style.filter || ''} blur(${blurAmount}px)`;
 
             // Add transition for smooth effect
-            element.style.transition = 'filter 0.5s ease-in-out';
-        }
+            htmlElement.style.transition = 'filter 0.5s ease-in-out';
+        });
     };
 
     // Apply initial blur
@@ -46,7 +50,7 @@ const randomBlur = (): void => {
     const intervalId = setInterval(applyRandomBlur, 3000);
 
     // Clean up after a certain duration
-    setTimeout(() => {
+    scheduleCleanup(() => {
         clearInterval(intervalId);
 
         // Restore all elements to original state with transition
